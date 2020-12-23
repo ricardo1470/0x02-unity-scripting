@@ -1,20 +1,20 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
-using UnityEngine.SceneManagement;
+﻿using System.Runtime;
+using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
 	public Transform player;
 	public Vector3 cameraOffset;
+    public float speed = 0.5f;
 
-	void Start ()
+    void Start ()
     {
-        cameraOffset = transform.position - player.transform.position;
+        cameraOffset = transform.position - player.position;
     }
-	void LateUpdate ()
+
+    void LateUpdate()
     {
-		Vector3 newPosition = player.transform.position + cameraOffset;
-        player.position = newPosition;
-	}
+        Vector3 newPosition = player.position + cameraOffset;
+        transform.position = Vector3.Slerp(transform.position, newPosition, speed);
+    }
 }
