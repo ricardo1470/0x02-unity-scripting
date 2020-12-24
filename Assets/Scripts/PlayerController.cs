@@ -1,15 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Xml.Serialization;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    // speed
     public float speed;
 
     private Rigidbody rigid;
 
+    // score
     private int score;
+
+    // health
+    public int health = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +44,11 @@ public class PlayerController : MonoBehaviour
 			Destroy(other.gameObject);
 			Debug.Log(string.Format("Score: {0}", score));
 		}
+
+        if (other.tag == "Trap")
+        {
+            health--;
+            Debug.Log(string.Format("Health: {0}", health));
+        }
     }
 }
