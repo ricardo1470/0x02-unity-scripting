@@ -50,5 +50,20 @@ public class PlayerController : MonoBehaviour
             health--;
             Debug.Log(string.Format("Health: {0}", health));
         }
+
+        if (other.tag == "Goal")
+        {
+            Debug.Log("You win!");
+        }
+
+    }
+
+    void Update()
+    {
+        if (health == 0)
+        {
+            Debug.Log("Game Over!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
